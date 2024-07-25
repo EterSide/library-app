@@ -1,0 +1,38 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: "jdbc:h2:mem:library;MODE=MYSQL;NON_KEYWORDS=USER"
+    username: "sa"
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      show_sql: true
+      format_sql: true
+      dialect: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: "jdbc:mysql://localhost/library"
+    username: "root"
+    password: "1234"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none # 스프링이 시작할 때 DB에 있는 테이블을 어떻게 처리할지 create 경우 기존 테이블 삭제 후 다시 생성 create-drop 스프링 종료시 테이블 모두 제거 update 객체와 테이블의 다른 부분만 변경, validate 객체와 테이블이 동일한지 확인, none 별다른 조치를 하지 않는다.
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
