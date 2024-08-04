@@ -28,6 +28,11 @@ public class UserController {
         return userService.getUsers();
     }
 
+    @GetMapping("/hi")
+    public String hi() {
+        return "hi jenkins";
+    }
+
     @PutMapping("/user") //Put /user
     public void updateUser(@RequestBody UserUpdateRequest request) {
         userService.updateUser(request);
